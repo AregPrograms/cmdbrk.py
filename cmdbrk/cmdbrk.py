@@ -2,7 +2,7 @@ from typing import List, Dict, TypedDict
 
 HandledArguments = TypedDict("HandledArguments", {"other": Dict[int, str], "flags": List[str], "options": Dict[str, str]})
 
-def handle(argv: List[str]) -> HandledArguments:
+def handle(argv: List[str], prefix: str = "-") -> HandledArguments:
     """Handle arguments `argv`
 
        argv (List[str]): Arguments to handle.
@@ -15,12 +15,12 @@ def handle(argv: List[str]) -> HandledArguments:
 
     while index < len(argv):
         arg = argv[index]
-        if arg.startswith("-"):
+        if arg.startswith(prefix):
             if flags.count(arg) > 0 or arg in options.keys():
                 raise Exception(f"Cannot have duplicate flags/options ({arg})")
 
             if index < len(argv)-1:
-                if argv[index+1].startswith("-"):
+                if argv[index+1].startswith(prefix):
                     flags.append(arg)
                 else:
                     options[arg[1:]] = argv[index+1]
