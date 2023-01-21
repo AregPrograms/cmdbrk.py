@@ -21,12 +21,12 @@ def handle(argv: List[str], prefix: str = "-") -> HandledArguments:
 
             if index < len(argv)-1:
                 if argv[index+1].startswith(prefix):
-                    flags.append(arg)
+                    flags.append(arg[1:])
                 else:
                     options[arg[1:]] = argv[index+1]
                     index+=1
             else:
-                flags.append(arg)
+                flags.append(arg[1:])
         else:
             other[index] = arg
         index+=1;
