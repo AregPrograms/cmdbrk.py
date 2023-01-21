@@ -6,6 +6,7 @@ def handle(argv: List[str], prefix: str = "-") -> HandledArguments:
     """Handle arguments `argv`
 
        argv (List[str]): Arguments to handle.
+       prefix (str): The prefix of flags and options.
     """
     index: int = 0
 
